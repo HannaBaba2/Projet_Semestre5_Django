@@ -1,0 +1,17 @@
+from django.db import models
+
+class Personne(models.Model):
+    sexe_choix =[
+
+        ('F','Féminin'),
+        ('M','Masculin'),
+    ]
+
+    nom =models.CharField(max_length=50)
+    prenom=models.CharField(max_length=50)
+    sexe = models.CharField(max_length=1,choices=sexe_choix)
+    date_naissance = models.DateField(null=True,blank=True)
+
+
+    class Meta:
+        abstract =True

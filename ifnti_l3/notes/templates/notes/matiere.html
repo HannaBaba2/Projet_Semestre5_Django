@@ -1,0 +1,14 @@
+<h1>Détail de la matière</h1>
+
+<p><strong>ID :</strong> {{ matiere.id }}</p>
+<p><strong>Nom :</strong> {{ matiere.nom }}</p>
+<p><strong>Enseignant :</strong> {{ matiere.enseignant.nom }} {{ matiere.enseignant.prenom }}</p>
+
+<h2>Niveaux concernés :</h2>
+<ul>
+  {% for n in matiere.niveau.all %}
+    <li>{{ n.nom }}</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'notes:matieres' %}">Retour à la liste des matières</a>

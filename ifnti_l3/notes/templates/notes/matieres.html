@@ -1,0 +1,24 @@
+<h1>Liste des matières</h1>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Enseignant</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in matieres %}
+      <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.nom }}</td>
+        <td>{{ m.enseignant.nom }} {{ m.enseignant.prenom }}</td>
+        <td>
+          <a href="{% url 'notes:matiere' m.pk %}">Détails</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<h1>Liste des élèves</h1>
+
+<table border="3" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Matricule</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Sexe</th>
+      <th>Date de naissance</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in eleves %}
+      <tr>
+        <td>{{ e.matricule }}</td>
+        <td>{{ e.nom }}</td>
+        <td>{{ e.prenom }}</td>
+        <td>{{ e.sexe }}</td>
+        <td>{{ e.date_naissance }}</td>
+        <td>
+          <a href="{% url 'notes:eleve' e.pk %}">Détails</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
