@@ -11,4 +11,7 @@
   {% endfor %}
 </ul>
 
-<a href="{% url 'notes:matieres' %}">Retour à la liste des matières</a>
+<a href="{% url 'notes:matieres' %}">Retour à la liste des matières</a><br/>
+<a href="{% url 'notes:add_notes' matiere.id %}"> Ajouter les notes pour cette matière</a>
+
+

@@ -1,6 +1,7 @@
 <h1>Liste des élèves</h1>
 
 <table border="3" cellpadding="8" cellspacing="0">
+  <a href="{% url 'notes:add_eleve' %}">Ajouter Eleve</a>
   <thead>
     <tr>
       <th>Matricule</th>
@@ -20,9 +21,15 @@
         <td>{{ e.sexe }}</td>
         <td>{{ e.date_naissance }}</td>
         <td>
-          <a href="{% url 'notes:eleve' e.pk %}">Détails</a>
+          <a href="{% url 'notes:eleve' e.pk %}">Détails</a> 
+          <a href="{% url 'notes:update_eleve' e.pk %}">Modifier</a>
+          
         </td>
+
       </tr>
     {% endfor %}
+    
+
   </tbody>
 </table>
+<a href="{% url 'notes:index' %}">Retour à l'accueil</a>

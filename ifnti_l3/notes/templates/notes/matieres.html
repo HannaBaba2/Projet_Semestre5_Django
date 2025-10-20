@@ -1,6 +1,7 @@
 <h1>Liste des matières</h1>
 
 <table border="1" cellpadding="8" cellspacing="0">
+   <a href="{% url 'notes:add_enseignant' %}">Ajouter enseignant</a>
   <thead>
     <tr>
       <th>ID</th>
@@ -16,9 +17,13 @@
         <td>{{ m.nom }}</td>
         <td>{{ m.enseignant.nom }} {{ m.enseignant.prenom }}</td>
         <td>
-          <a href="{% url 'notes:matiere' m.pk %}">Détails</a>
+            <a href="{% url 'notes:matiere' m.pk %}">Détails</a>
+            <a href="{% url 'notes:update_enseignant' m.enseignant.pk %}">Modifier enseignant</a>
+          </td>
+
         </td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
+<a href="{% url 'notes:index' %}">Retour à l'accueil</a>

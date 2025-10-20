@@ -1,9 +1,12 @@
 from django.contrib import admin
+from .models import Eleve, Enseignant, Niveau, Matiere, Note
+from .forms.EleveForm import EleveForm
 
-# Register your models here.
-from .models import Niveau, Eleve, Enseignant, Matiere
+class EleveAdmin(admin.ModelAdmin):
+    form = EleveForm
 
-admin.site.register(Niveau)
-admin.site.register(Eleve)
+admin.site.register(Eleve, EleveAdmin)
 admin.site.register(Enseignant)
+admin.site.register(Niveau)
 admin.site.register(Matiere)
+admin.site.register(Note)

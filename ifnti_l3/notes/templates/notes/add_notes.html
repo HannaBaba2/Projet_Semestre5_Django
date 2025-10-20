@@ -1,0 +1,33 @@
+
+<h1>Ajouter les notes pour la matière : {{ matiere.nom }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <table border="2" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Élève</th>
+        <th>Note sur 20</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in eleves %}
+        <tr>
+          <td>{{ e.nom }} {{ e.prenom }}</td>
+          <td>
+                <input type="number" name="note_{{ e.matricule }}" min="0" max="20" step="0.5">
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="2">Aucun élève ne suit cette matière.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+  <button type="submit">Enregistrer toutes les notes</button>
+</form>
+
+<a href="{% url 'notes:matieres' %}">Retour à la liste des matières</a>
+
+

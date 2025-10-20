@@ -1,1 +1,11 @@
-<h1>Bonjour tout le monde !</h1>
+<h1> Bienvenue dans le système de gestion des notes</h1>
+
+<p>Utilisez le menu ci-dessous pour accéder aux différentes fonctionnalités :</p>
+
+<ul>
+  <li><a href="{% url 'notes:eleves' %}">Liste des élèves</a></li>
+  <li><a href="{% url 'notes:matieres' %}">Liste des matières</a></li>
+  <li><a href="{% url 'notes:stats' %}">Statistiques générales</a></li>
+  <li><a href="{% url 'notes:add_eleve' %}">Ajouter un élève</a></li>
+  <li><a href="{% url 'notes:add_enseignant' %}"> Ajouter un enseignant</a></li>
+</ul>

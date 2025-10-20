@@ -1,3 +1,5 @@
+<!-- notes/templates/notes/eleve.html -->
+
 <h1>Détail de l'élève</h1>
 
 <p><strong>Matricule :</strong> {{ eleve.matricule }}</p>
@@ -6,4 +8,18 @@
 <p><strong>Sexe :</strong> {{ eleve.sexe }}</p>
 <p><strong>Date de naissance :</strong> {{ eleve.date_naissance }}</p>
 
-<a href="{% url 'notes:eleves' %}"> Retour à la liste des élèves</a>
+<h2>Ses matières</h2>
+<ul>
+  {% for m in eleve.matieres.all %}
+    <li>
+      {{ m.nom }}
+      <br/>
+      <a href="{% url 'notes:add_note' eleve.matricule m.id %}">Ajouter une note</a>
+    </li>
+  {% empty %}
+    <li>Aucune matière associée à cet élève.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'notes:eleves' %}">Retour à la liste des élèves</a>
+

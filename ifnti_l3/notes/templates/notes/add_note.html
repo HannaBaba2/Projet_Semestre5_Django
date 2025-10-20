@@ -1,0 +1,12 @@
+ <h1>Ajouter une note</h1>
+
+<p>Élève : <strong>{{ eleve.nom }} {{ eleve.prenom }}</strong></p>
+<p>Matière : <strong>{{ matiere.nom }}</strong></p>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Enregistrer</button>
+</form> 
+
+
