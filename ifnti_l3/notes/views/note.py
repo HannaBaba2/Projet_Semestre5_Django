@@ -1,7 +1,11 @@
-
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, get_object_or_404,redirect
 from notes.models import Eleve, Matiere, Note
 from notes.forms.NoteForm import NoteForm
+@login_required
+@permission_required('notes.add_note', raise_exception=True)
+@permission_required('notes.add_notes', raise_exception=True)
+
 
 def add_note(request, eleve_id, matiere_id):
     eleve = get_object_or_404(Eleve, pk=eleve_id)
@@ -45,7 +49,7 @@ def add_notes(request, matiere_id):
                         defaults={'valeur': float(valeur)}
                     )
                 except Exception as err:
-                    print(f"⚠️ Erreur en créant la note de {e.nom}: {err}")
+                    print(f"Erreur en créant la note de {e.nom}: {err}")
         return redirect('notes:matieres')
 
     return render(request, "notes/add_notes.html", {

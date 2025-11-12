@@ -1,8 +1,12 @@
 app_name = "notes"
+from django.contrib.auth import views as auth_views
 from django.urls import path
 from .views import index, statistique,eleve, matiere, niveau,stats_views,note,enseignant
 
 urlpatterns = [
+
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', index.index, name="index"),
     path('eleves/', eleve.eleves, name="eleves"),
     path("eleve/add/", eleve.add_eleve, name="add_eleve"),

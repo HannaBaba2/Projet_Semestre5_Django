@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 380px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    label {
+      text-align: left;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Connexion</h1>
+
+    {% if form.errors %}
+      <p class="error"> Nom d’utilisateur ou mot de passe incorrect.</p>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <label for="id_username">Nom d’utilisateur</label>
+      <input type="text" name="username" id="id_username" required placeholder="Entrez votre nom d’utilisateur">
+
+      <label for="id_password">Mot de passe</label>
+      <input type="password" name="password" id="id_password" required placeholder="Entrez votre mot de passe">
+
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
+</body>
+</html>

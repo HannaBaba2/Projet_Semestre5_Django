@@ -1,5 +1,9 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect
 from notes.forms.EnseignantForm import EnseignantForm
+@login_required
+@permission_required('notes.add_enseignant', raise_exception=True)
+
 
 def add_enseignant(request):
     if request.method == "POST":
@@ -11,6 +15,8 @@ def add_enseignant(request):
         form = EnseignantForm()
     return render(request, "notes/add_enseignant.html", {"form": form})
 
+@login_required
+@permission_required('notes.update_enseignant', raise_exception=True)
 
 def update_enseignant(request, id):
     from django.shortcuts import get_object_or_404
