@@ -5,10 +5,9 @@ from .forms.EleveForm import EleveForm
 
 @admin.register(Eleve)
 class EleveAdmin(admin.ModelAdmin):
-
     form = EleveForm
 
-    list_display = ('matricule', 'nom', 'prenom', 'sexe', 'niveau', 'date_naissance')
+    list_display = ('matricule', 'nom', 'prenom', 'sexe', 'niveau', 'date_naissance', 'user')
     list_display_links = ('matricule', 'nom')        
     list_editable = ('niveau',)                     
     search_fields = ('matricule', 'nom', 'prenom')   
@@ -23,7 +22,7 @@ class EleveAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Informations personnelles', {
-            'fields': (('nom', 'prenom'), 'sexe', 'date_naissance')
+            'fields': (('nom', 'prenom'), 'sexe', 'date_naissance', 'user')
         }),
         ('Informations académiques', {
             'fields': ('niveau', 'matieres', 'matricule'),
@@ -31,6 +30,11 @@ class EleveAdmin(admin.ModelAdmin):
         }),
     )
 
+    def save_model(self, request, obj, form, change):
+        # Si aucun utilisateur n'est assigné, on assigne l'utilisateur courant
+        if not obj.user:
+            obj.user = request.user
+        super().save_model(request, obj, form, change)
 
 @admin.register(Enseignant)
 class EnseignantAdmin(admin.ModelAdmin):
@@ -63,3 +67,5 @@ class NoteAdmin(admin.ModelAdmin):
 admin.site.site_header = "IFNTI - Administration"
 admin.site.site_title = "IFNTI - Gestion académique"
 admin.site.index_title = "Tableau de bord administratif"
+
+

@@ -1,0 +1,65 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage[left=2cm, top=3cm, bottom=2cm, right=2cm]{geometry}
+
+\graphicspath{{\VAR{image_path}}}
+
+\begin{document}
+
+\begin{minipage}{12cm}
+    \textsf{REGION CENTRALE} \\
+\end{minipage}
+\begin{minipage}{5cm}
+    REPUBLIQUE TOGOLAISE \\
+    Travail-Liberté-Patrie
+\end{minipage}
+\begin{minipage}{3cm}
+    \begin{center}
+        \includegraphics[scale=0.8]{logoIfnti.jpg} \\
+        IFNTI-Sokodé TOGO \\
+        300 BP 40
+    \end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\begin{center}
+    \underline{\textbf{SYNTHÈSE DES MOYENNES PAR ÉTUDIANT}}
+\end{center}
+
+\vspace{0.5cm}
+
+\BLOCK{for e in eleves}
+\textbf{Nom : \VAR{e.nom} \VAR{e.prenom}} \\
+Matricule : \VAR{e.matricule}
+
+\begin{longtable}{|l|c|}
+    \hline
+    \textbf{Matière} &
+    \textbf{Moyenne} \\
+    \hline
+    \endfirsthead
+
+    \hline
+    \textbf{Matière} &
+    \textbf{Moyenne} \\
+    \hline
+    \endhead
+
+    \BLOCK{for item in e.synthese}
+        \VAR{item.matiere} &
+        \VAR{item.moyenne} \\
+        \hline
+    \BLOCK{endfor}
+
+\end{longtable}
+
+\vspace{0.7cm}
+\BLOCK{endfor}
+
+\end{document}
